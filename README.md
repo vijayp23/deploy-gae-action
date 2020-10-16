@@ -13,10 +13,10 @@ This action will allow you to deploy [Google App Engine](https://cloud.google.co
     project-id: ${{ secrets.PROJECT_ID }}
     config-files: './app.yml'
     # Optional
-    service-version: 3              #default value : ""
-    delete-previous-versions: true  #default value : false
-    service-name: frontend-service  #default value : default
-    debug: false                    #default value : false
+    service-version: 3                          #default value : ""
+    delete-previous-versions: true              #default value : false
+    service-name: ${{ secrets.SERVICE_NAME }}   #default value : default
+    debug: false                                #default value : false
 ```
 ## Inputs
 
