@@ -34,9 +34,9 @@ async function run() {
 
     core.startGroup('deploy google app engine');
     if (isDebug) {
-      console.log("gcloud app deploy --appyaml ${configFile} --project=${projectId} ${serviceVersion} --promote --stop-previous-version");
+      console.log(`gcloud app deploy --appyaml=${configFile} --project=${projectId} ${serviceVersion} --promote --stop-previous-version`);
     } else {
-      execSync(`gcloud app deploy --appyaml ${configFile} --project=${projectId} ${versionFlag} --promote --stop-previous-version`, { stdio: 'inherit' });
+      execSync(`gcloud app deploy --appyaml=${configFile} --project=${projectId} ${versionFlag} --promote --stop-previous-version`, { stdio: 'inherit' });
     }
     core.endGroup();
   }
@@ -48,6 +48,7 @@ async function run() {
 
     if (serviceName == "") {
       console.error('Please provide service name...');
+      throw new Error('Service Name is empty');
     } else {
       try {
         core.startGroup('List of all available versions');
@@ -56,7 +57,7 @@ async function run() {
 
         core.startGroup('Delete versions');
 
-        for (var service in serviceName) {
+        serviceName.split(',').forEach(function(service){
           console.log('List versions to be deleted in service - ' + service);
           console.log("");
           var versionList = JSON.parse(execSync(`gcloud app versions list --project=${projectId} --service=${service} --filter=TRAFFIC_SPLIT=0 --sort-by=~"last_deployed_time" --format="json"`).toString());
@@ -74,7 +75,7 @@ async function run() {
           }
 
           if (isDebug) {
-            console.log("gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet");
+            console.log(`gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet`);
           } else {
             console.log('Deleting versions - ' + versions);
             execSync(`gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet`, { stdio: 'inherit' });
@@ -82,7 +83,7 @@ async function run() {
           }
 
           console.log("");
-        }
+        })
 
         core.endGroup();
       }
