@@ -63,10 +63,8 @@ async function run() {
           var versionList = JSON.parse(execSync(`gcloud app versions list --project=${projectId} --service=${service} --filter=TRAFFIC_SPLIT=0 --sort-by=~"last_deployed_time" --format="json"`).toString());
           var versions = "";
           for (var index in versionList) {
-            if (index > retainVersions - 1) {
               console.log("Version: " + versionList[index]["id"] + " DeployedOn: " + versionList[index]["last_deployed_time"]["datetime"]);
               versions += versionList[index]["id"] + " ";
-            }
           }
 
           if (versions == "") {
@@ -81,7 +79,6 @@ async function run() {
             execSync(`gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet`, { stdio: 'inherit' });
             
           }
-
           console.log("");
         })
 
