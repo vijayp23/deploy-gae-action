@@ -1,0 +1,17 @@
+name: "Test Action"
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./
+      with:
+        service-account: ${{ secrets.SERVICE_ACCOUNT }}
+        project-id: ${{ secrets.PROJECT_ID }}
+        config-files: ./app.yml
+        delete-previous-versions: true
+        service-name: ${{ secrets.SERVICE_NAME }}
+        debug: true

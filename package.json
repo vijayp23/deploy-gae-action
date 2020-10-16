@@ -1,0 +1,16 @@
+{
+  "name": "delete-gae-version-action",
+  "version": "1.0.0",
+  "description": "Cleanup Google App Engine versions",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vijay Patil",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@vercel/ncc": "^0.24.1"
+  }
+}

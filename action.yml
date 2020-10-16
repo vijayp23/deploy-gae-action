@@ -1,0 +1,34 @@
+name: 'Deploy google app engine'
+description: 'This action will allow you to deploy Google App Engine and delete versions which are not receiving traffic'
+inputs:
+  service-account:
+    description: 'Service account file'
+    required: true
+  project-id:
+    description: 'Project id'
+    required: true
+  config-files:
+    description: 'The yaml files for the services or configurations you want to deploy'
+    required: true
+  service-version:
+    description: 'The version of the app that will be created or replaced by this deployment'
+    required: false
+    default: ""
+  delete-previous-versions:
+    description: 'Delete versions which are not receiving any traffic'
+    required: false
+    default: false
+  service-name:
+    description: 'Name of the service which previous versions needs to be deleted'
+    required: false
+    default: ""
+  debug:
+    description: 'Debug action'
+    required: false
+    dafault: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'pocket'
+  color: 'blue'
