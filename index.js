@@ -68,16 +68,14 @@ async function run() {
           }
 
           if (versions == "") {
-            isDebug = true;
             console.log("There are no versions available to delete..");
-          }
-
-          if (isDebug) {
-            console.log(`gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet`);
           } else {
-            console.log('Deleting versions - ' + versions);
-            execSync(`gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet`, { stdio: 'inherit' });
-            
+            if (isDebug) {
+              console.log(`gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet`);
+            } else {
+              console.log('Deleting versions - ' + versions);
+              execSync(`gcloud app versions delete --project=${projectId} --service=${service} ${versions} --quiet`, { stdio: 'inherit' });
+            }
           }
           console.log("");
         })
