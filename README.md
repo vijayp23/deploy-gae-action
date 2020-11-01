@@ -7,7 +7,7 @@ This action will allow you to deploy [Google App Engine](https://cloud.google.co
 ## Usage
 ```yaml
 - name: Deploy google app engine
-  uses: vijayp23/deploy-gae-action@1.0.0
+  uses: vijayp23/deploy-gae-action@1.0.1
   with:
     service-account: ${{ secrets.SERVICE_ACCOUNT }}
     project-id: ${{ secrets.PROJECT_ID }}
