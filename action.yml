@@ -21,7 +21,7 @@ inputs:
   service-name:
     description: 'Name of the service which previous versions needs to be deleted'
     required: false
-    default: ""
+    default: "default"
   debug:
     description: 'Debug action'
     required: false
