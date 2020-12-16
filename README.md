@@ -16,8 +16,8 @@ This action will allow you to deploy [Google App Engine](https://cloud.google.co
     service-version: 3                          #default value : ""
     delete-previous-versions: true              #default value : false
     service-name: ${{ secrets.SERVICE_NAME }}   #default value : default
-    debug: false                                #default value : false
     no-cache: false                             #default value : false
+    debug: false                                #default value : false
 ```
 ## Inputs
 
@@ -36,6 +36,7 @@ This action will allow you to deploy [Google App Engine](https://cloud.google.co
 * `service-version`: version of the app that will be created or replaced by this deployment
 * `delete-previous-versions`: set it to `true` to delete previous versions which are not receiving any traffic. If this is set to `true` then `service-name` is required
 * `service-name`: name of the service of which previous versions needs to be deleted. Set it to `default` if service name is not mentioned in config file
+* `no-cache`: deploy project without using cache. Takes longer, but useful in some cases. Set to `true` to not use cache
 * `debug`: test action and check version details
 
 ## Note
