@@ -10,7 +10,8 @@ async function run() {
   const serviceVersion = core.getInput('service-version');
   const serviceName = core.getInput('service-name');
   const deletePrevVersions = core.getInput('delete-previous-versions');
-  var isDebug = core.getInput('debug');
+  var isDebug = core.getInput('debug');  
+  const noCache = core.getInput('no-cache');
 
   var versionFlag = "";
 
@@ -34,9 +35,9 @@ async function run() {
 
     core.startGroup('deploy google app engine');
     if (isDebug) {
-      console.log(`gcloud app deploy --appyaml=${configFile} --project=${projectId} ${serviceVersion} --promote --stop-previous-version`);
+      console.log(`gcloud app deploy ${noCache ? '--no-cache'} --appyaml=${configFile} --project=${projectId} ${serviceVersion} --promote --stop-previous-version`);
     } else {
-      execSync(`gcloud app deploy --appyaml=${configFile} --project=${projectId} ${versionFlag} --promote --stop-previous-version`, { stdio: 'inherit' });
+      execSync(`gcloud app deploy ${noCache ? '--no-cache'} --appyaml=${configFile} --project=${projectId} ${versionFlag} --promote --stop-previous-version`, { stdio: 'inherit' });
     }
     core.endGroup();
   }
