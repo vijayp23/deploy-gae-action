@@ -22,6 +22,10 @@ inputs:
     description: 'Name of the service which previous versions needs to be deleted'
     required: false
     default: "default"
+  no-cache:
+    description: 'Disables using of cache when building project'
+    required: false
+    dafault: false
   debug:
     description: 'Debug action'
     required: false
