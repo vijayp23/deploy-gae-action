@@ -13,4 +13,5 @@ jobs:
         project-id: ${{ secrets.PROJECT_ID }}
         config-files: ./app.yml
         delete-previous-versions: true
+        no-cache: true
         debug: true
